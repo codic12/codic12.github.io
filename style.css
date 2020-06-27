@@ -98,6 +98,7 @@ div.projects div{
 .topnav a:hover {
   background-color: #ddd;
   color: black;
+  border-radius: 10px !important;
 }
 
 /* Add an active class to highlight the current page */
@@ -105,6 +106,7 @@ div.projects div{
   background-color: #0055ff;
   color: white;
   text-decoration: overline; 
+  border-radius: 10px !important;
 }
 
 /* Hide the link that should open and close the topnav on small screens */
