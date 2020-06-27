@@ -20,11 +20,6 @@ body {
 }
 
 
-/* Fake image */
-.fakeimg {
-  background-color: rgb(88, 85, 85);
-  width: 100%;
-}
 
 /* Add a card effect for articles */
 .card {
@@ -39,7 +34,6 @@ body {
   display: table;
   clear: both;
 }
-
 
 
 /* Responsive layout - when the screen is less than 900px wide, make the two columns stack on top of each other instead of next to each other */
