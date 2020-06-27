@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+      body {
+        font-family: Jost;
+        padding: 0px;
+        background: #181818;
+        color: #f1f1f1;
+        padding-bottom: 0px;
+    }
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background-color: #212121;
+}
+
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+
+/* Fake image */
+.fakeimg {
+  background-color: rgb(88, 85, 85);
+  width: 100%;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: #303030;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+  }
