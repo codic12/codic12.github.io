@@ -1,26 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
 
 body{
-    margin:0;
-    padding:0;
+    margin :0;
+    padding :0;
     font-family: 'Jost', monospace;
-    background:#181818;
+    background: #181818;
     font-size: larger;
-    overflow-x:hidden;  
+    overflow-x: hidden;  
 }
 nav ul li{
     list-style-type: none;
     display: inline-flex;
-    flex-direction:row;
-    background:#5D0BB0;
-    outline:none;
-    
+    flex-direction: row;
+    background: #5D0BB0;
+    outline: none;
 }
 
 nav ul li a{
-    color:white;
+    color: #fff;
     text-decoration: none;
-    outline:none;
+    outline: none;
     padding: 10px 20px;
     max-width: 100%;
     font-family: 'Jost', sans-serif;
@@ -31,11 +30,11 @@ nav ul {
     margin:0;  
 }
 nav, nav ul, nav ul li, nav ul, li a{
-    position:sticky;
+    position: sticky;
 }
 
 nav ul li:hover{
-    background:#920BBA
+    background: #920BBA
 }
 .container{
     display:flex;
