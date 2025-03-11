@@ -1,50 +1,85 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Codic's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- <meta property="og:title" content="The Drago's Den" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.jdragon16.live/thedragosden" />
-    <meta property="og:image" content="https://www.jdragon16.live/thedragosden/logo.png" />
-    <link rel="icon" href="https://www.jdragon16.live/thedragosden/logo.png"/>
-    <meta property="og:description" content="Are you looking for a friendly and supporting programming server? Why not join the drago's den? We are a friendly and supportive programming community who will help you with anything programming related. Here you can meet new friends with the same programming mindset." /> -->
-
-</head>
-<body>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <div class="topnav" id="myTopnav">
-      <a href="index.html" class="active">Home</a>
-      <a href="blog.html">Blog</a>
-      <a href="javascript:void(0);" class="icon" onclick="respMenu()">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div>
-    <script>
-        function respMenu() {
-            var x = document.getElementById("myTopnav");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gurjus Bhasin | Software Engineer</title>
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f5f2;
+            color: #4a4a4a;
         }
-    </script>
-    <div class="container">
-        <div style="text-align: left">
-            <h1>Hey there, I'm codic.</h1>
-            <p><i>Full stack dev, [a horrible] Linux sysadmin, UI designer, artist, and tinkerer.</i></p>
-            <p>Hello and welcome to my website! I'm codic, also known as codic12. Do you want to see some of my <a href="projects.html" class="link">projects</a>? Or maybe you'd rather <a href="about.html" class="link">learn about me and what I do, and the tools I use</a>? I also have a <a href="blog.html" class="link">blog</a>.</p>
-        </div>
-        <div class="left">
-            <img src="logo.png" style="width: 359px; border-radius: 110px">
-        </div>
-    </div>
 
-    <!-- <footer style="color: white; position: fixed; left: 0; bottom: 0; width: 100%">
-        &copy Codic Incorporated 2020. Some or all rights reserved.
-    </footer> -->
+        header {
+            background-color: #fffaf3;
+            color: #333;
+            padding: 15px 0px;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: normal;
+            font-family: 'Fira Mono', monospace;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fffaf3;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .blog-meta {
+            color: #777;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-family: 'Fira Mono', monospace;
+        }
+
+        .blog-entry {
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        a {
+            color: #5d675b;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Fira+Mono:wght@400;700&family=Courier+New&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>gurjus bhasin</header>
+    <div class="container">
+        {% for path, blog in blogs.items() -%}
+
+        <div class="blog-entry">
+            <div class="blog-title"><a href="{{ path }}">{{ blog.title }}</a></div>
+            <div class="blog-meta">Published on {{ blog.date }}</div>
+            <p>{{ blog.summary }}</p>
+        </div>
+        
+        {% endfor %}
+    </div>
 </body>
+
 </html>
