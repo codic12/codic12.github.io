@@ -7,11 +7,18 @@ body {
     /* padding: 0; */
     background-color: #f7f5f2;
     color: #4a4a4a;
-    margin-left: 18%;
-    margin-right: 18%;
+    margin-left: 16%;
+    margin-right: 16%;
     margin-top: 2%;
     line-height: 1.4;
 }
+@media only screen and (max-width: 768px) {
+    body {
+        margin-left:8%;
+        margin-right:8%;
+    }
+ }
+
 blockquote {
     background: #faf8f4;
     border-left: 5px solid #e3e2e0;

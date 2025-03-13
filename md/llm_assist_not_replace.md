@@ -11,7 +11,7 @@ Being a professional in a software field isn't nessecarily about being able to m
 
 And understanding how to use LLMs effectively isn't just a good skill to have in today's market; it's absolutely *essential* to have a future as a high-level junior software developer. (Obviously, if you're going into high-risk fields like finance or operating systems development, your job is a lot more secure because of how important that code functioning is to society).
 
-<p style='text-align:center'><img src='https://victorzhou.com/media/neural-network-post/network3.png' width='500'></p>
+<p style='text-align:center'><img src='https://victorzhou.com/media/neural-network-post/network3.png' width='60%'></p>
 <p style='text-align:center'>how a basic neural network works; it's just math!</p>
 
 ## Prompt engineering
