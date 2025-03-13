@@ -1,25 +1,13 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 import os
-import mistletoe
+import markdown
+import jinja2
 
-app = FastAPI()
-
-app.mount("/gen", StaticFiles(directory="gen"), name="static")
-
-templates = Jinja2Templates(directory=".")
+env = jinja2.Environment(loader= jinja2.FileSystemLoader("."))
 
 data = {}
 
-@app.get("/items/{id}", response_class=HTMLResponse)
-async def read_item(request: Request, id: str) -> HTMLResponse:
-    return templates.TemplateResponse(
-        request=request, name="index.html", context={"blogs": data}
-    )
-
 def generate_posts() -> None:
+    posts = []
     with os.scandir("./md") as it:
         for entry in it:
             with open(entry, "r") as file:
@@ -34,13 +22,18 @@ def generate_posts() -> None:
                         key, value = line.split(":", 1)
                         metadata[key.strip()] = value.strip()
                 content = "".join(lines[content_start:])
-                rendered = mistletoe.markdown(content)
-                rendered = "<link rel='stylesheet' type='text/css' href='/gen/style.css'>" + rendered
-                with open(f"./gen/{entry.name}.html", "w") as f:
+                rendered = markdown.markdown(content, extensions=["fenced_code", "codehilite"])
+                rendered = "<meta name='viewport' content='width=device-width, initial-scale=1.0' /><link rel='stylesheet' type='text/css' href='/gen/style.css?r=a'><h1>"+ metadata['title'] + "</h1><p class='date'>published on " + metadata['date'] + "</p><hr>" + rendered
+                with open(f"./gen/{entry.name.rstrip('.md')}.html", "w") as f:
                     f.write(rendered)
-                data[f"/gen/{entry.name}.html"] = metadata
+                data[f"/gen/{entry.name.rstrip('.md')}.html"] = metadata
+                posts.append({"url": f"/gen/{entry.name.rstrip('.md')}.html", "metadata": metadata})
+
+    # Render index.html
+    template = env.get_template("index.jinja")
+    print(posts)
+    with open("./index.html", "w") as f:
+        f.write(template.render(blogs=data))
 
 if __name__ == "__main__":
-    import uvicorn
     generate_posts()
-    uvicorn.run(app, host="0.0.0.0", port=8099)

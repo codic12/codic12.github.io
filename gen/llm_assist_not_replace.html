@@ -1,0 +1,97 @@
+<meta name='viewport' content='width=device-width, initial-scale=1.0' /><link rel='stylesheet' type='text/css' href='/gen/style.css?r=a'><h1>Using LLMs to assist, not replace</h1><p class='date'>published on 03/12/2025</p><hr><p>In the modern tech world, many rising CS majors are scared they're going to be out of a job. As someone in high school surrounded by prospecting CS majors, I understand the sentiment. AI is scary good; if you're a junior developer, realistically in most scenarios a LLM can write better, more organized code than you for a fraction of the cost.</p>
+<p>However, what a lot of people don't understand is that LLMs are just large mathematical functions; while they're perfectly capable of doing the menial grudge work of programming, they're not able to take a step back and architect a large project from scratch. </p>
+<p>Being a professional in a software field isn't nessecarily about being able to memorize every tidbit of syntax or know how to implement every specific algorithm; it's about understanding how things tie together at a larger level. And that's where human involvement is still very much needed. AI will never be able to replace the people making executive decisions; the risk of it blowing up is just far too high and doesn't make sense at all from a financial perspective.</p>
+<p>And understanding how to use LLMs effectively isn't just a good skill to have in today's market; it's absolutely <em>essential</em> to have a future as a high-level junior software developer. (Obviously, if you're going into high-risk fields like finance or operating systems development, your job is a lot more secure because of how important that code functioning is to society).</p>
+<p style='text-align:center'><img src='https://victorzhou.com/media/neural-network-post/network3.png' width='500'></p>
+<p style='text-align:center'>how a basic neural network works; it's just math!</p>
+
+<h2>Prompt engineering</h2>
+<p>A buzzword you've probably heard is <strong>prompt engineering</strong>. But what exactly is prompt engineering? Well, as <a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI defines it</a>:</p>
+<blockquote>
+<p>The process of crafting prompts to get the right output from a model is called prompt engineering. You can improve output by giving the model precise instructions, examples, and necessary context information - like private or specialized information not included in the model's training data.</p>
+</blockquote>
+<p>Basically - your goal is to provide the LLM enough input about the task and word your prompt in such a way that you get exactly what you want. In the case of producing code, this is especially important; you want to be <em>as specific as possible</em> with both technical and overall architectural choices. If you leave these choices up to the model, chances are you won't get what you wanted. Technical choices could include things like:</p>
+<ul>
+<li>languages</li>
+<li>frameworks</li>
+<li>algorithms</li>
+</ul>
+<p>while architectural choices you might want to specify could be, for example:</p>
+<ul>
+<li>the general structure of a REST API (which endpoints do what and with which method).</li>
+<li>how authentication is handled</li>
+<li>how you want things to be stored in a database</li>
+</ul>
+<p>Here's some examples we can try on ChatGPT:</p>
+<h3>Bad prompt &#x274C;</h3>
+<blockquote>
+<p>Write me a chat application using rest apis and a web frontend.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Server</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">cors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cors&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Server</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">cors</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">origin</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">methods</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/messages&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">messages</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/messages&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="p">,</span><span class="w"> </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="nx">messages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">201</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;A user connected&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;disconnect&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;User disconnected&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Server running on port 3000&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Frontend code ommitted for brevity</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">app</span><span class="p">,</span><span class="w"> </span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="nx">frontend</span><span class="w"> </span><span class="p">};</span>
+</code></pre></div>
+
+<h3>Good prompt &#x2705;</h3>
+<p>Prompt 1:</p>
+<blockquote>
+<p>Write me a server in JavaScript &amp; Node.js, using the <code>express</code> framework.</p>
+<p>Make tables in a SQLite database for <code>users</code> (containing username, password, ID, email, registration date), <code>channels</code> (containing IDs, and users joined) and <code>messages</code> (containing user IDs and channel IDs and the actual message text)
+with the following endpoints for a REST API:</p>
+<ul>
+<li><code>GET /</code> =&gt; render index template (don't make this template itself yet)</li>
+<li><code>POST /login</code> =&gt; compare credentials with those in database <code>users</code> table, give one-time token if correct.</li>
+<li><code>POST /signup</code> =&gt; insert into <code>users</code> table, make sure those credentials don't exist already. remember to hash and salt the password.
+for the below also remember to check the authentication token in the header:</li>
+<li><code>PUT /channels/create</code> =&gt; create a new channel, it'll give you the ID as a result</li>
+<li><code>GET /channels</code> =&gt; get list of all channels</li>
+<li><code>GET /messages/{channel_id}</code> =&gt; return all messages from that channel ID</li>
+<li><code>PUT /channels/{id}</code> =&gt; send a message at that channel</li>
+</ul>
+</blockquote>
+<p>Prompt 2:</p>
+<blockquote>
+<p>Now using the above API (input it again if you lost the model's context), write me a web application for chatting which lets you log in, sign up, and have different channels. You can use CSS frameworks but refrain from using anything that would be too heavy. Make it look modern, using material design, modern typography, smooth animations and blur effects, etc. I'd like it to also have a generally pastel colorscheme. The design aspect is very important; in addition to functionality make sure it seamlessly integrates with a user's day to day web experience. Also show me how to tie this back to the / endpoint in my original server.</p>
+</blockquote>

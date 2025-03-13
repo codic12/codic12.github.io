@@ -72,13 +72,15 @@
 <body>
     <header>gurjus bhasin</header>
     <div class="container">
+        {% for path, blog in blogs.items() -%}
+
         <div class="blog-entry">
-            <div class="blog-title"><a href="/gen/llm_assist_not_replace.html">Using LLMs to assist, not replace</a></div>
-            <div class="blog-meta">published on 03/12/2025</div>
-            <p>With examples.</p>
+            <div class="blog-title"><a href="{{ path }}">{{ blog.title }}</a></div>
+            <div class="blog-meta">published on {{ blog.date }}</div>
+            <p>{{ blog.summary }}</p>
         </div>
         
-        
+        {% endfor %}
     </div>
 </body>
 
