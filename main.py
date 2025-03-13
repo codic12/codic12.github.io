@@ -23,7 +23,7 @@ def generate_posts() -> None:
                         metadata[key.strip()] = value.strip()
                 content = "".join(lines[content_start:])
                 rendered = markdown.markdown(content, extensions=["fenced_code", "codehilite"])
-                rendered = "<meta name='viewport' content='width=device-width, initial-scale=1.0' /><link rel='stylesheet' type='text/css' href='/gen/style.css?r=a'><h1>"+ metadata['title'] + "</h1><p class='date'>published on " + metadata['date'] + "</p><hr>" + rendered
+                rendered = "<meta name='viewport' content='width=device-width, initial-scale=1.0' /><link rel='stylesheet' type='text/css' href='/gen/style.css?r=a'><!-- Google tag (gtag.js) --><script async src='https://www.googletagmanager.com/gtag/js?id=G-HQESZYRT07'></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-HQESZYRT07');</script><h1>"+ metadata['title'] + "</h1><p class='date'>published on " + metadata['date'] + "</p><hr>" + rendered
                 with open(f"./gen/{entry.name.rstrip('.md')}.html", "w") as f:
                     f.write(rendered)
                 data[f"/gen/{entry.name.rstrip('.md')}.html"] = metadata
