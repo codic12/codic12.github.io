@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gurjus Bhasin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'media',
+        };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            transition: background 0.3s ease-in-out;
+        }
+        .dark body {
+            background: #1e1e2e;
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQESZYRT07"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HQESZYRT07');
+    </script>
+</head>
+
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-all">
+    <header class="bg-gradient-to-r from-blue-500 to-teal-400 text-white shadow-md w-full fixed top-0 z-10 flex justify-between px-10 py-4 items-center">
+        <span class="text-3xl font-bold">gurjus bhasin</span>
+        <nav>
+            <ul class="flex space-x-6 text-lg">
+                <li><a href="#" class="hover:underline">Home</a></li>
+                <li><a href="#" class="hover:underline">Blog</a></li>
+                <li><a href="#" class="hover:underline">About</a></li>
+                <li><a href="#" class="hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container mx-auto px-6 py-32 text-center">
+        <!-- <div class="text-2xl font-bold mb-10 text-blue-600 dark:text-teal-400">Welcome to my digital space 🚀</div> -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {% for path, blog in blogs.items() -%}
+            <div class="bg-white dark:bg-gray-800 backdrop-blur-lg p-6 rounded-2xl shadow-lg transition transform hover:scale-105 hover:shadow-2xl border-l-4 border-blue-500 dark:border-teal-400">
+                <div class="text-2xl font-bold text-gray-800 dark:text-gray-100 hover:text-blue-500 dark:hover:text-teal-400 transition duration-300">
+                    <a href="{{ path }}">{{ blog.title }}</a>
+                </div>
+                <div class="text-gray-500 dark:text-gray-400 text-sm mt-1">Published on {{ blog.date }}</div>
+                <p class="text-gray-700 dark:text-gray-300 mt-3">{{ blog.summary }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
