@@ -5,91 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gurjus Bhasin</title>
-    <link
-    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Fira+Mono:wght@400;700&family=Courier+New&display=swap"
-    rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'media',
+        };
+    </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
         body {
-            font-family: 'Merriweather', serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f5f2;
-            color: #4a4a4a;
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            transition: background 0.3s ease-in-out;
         }
-
-        header {
-            background-color: #fffaf3;
-            color: #333;
-            padding: 15px 0px;
-            text-align: center;
-            font-size: 2em;
-            font-weight: normal;
-            font-family: 'Fira Mono', monospace;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fffaf3;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .blog-title {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 8px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .blog-meta {
-            color: #777;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            font-family: 'Fira Mono', monospace;
-        }
-
-        .blog-entry {
-            margin-bottom: 35px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        a {
-            color: #5d675b;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+        .dark body {
+            background: #1e1e2e;
         }
     </style>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQESZYRT07"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HQESZYRT07');
+    </script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQESZYRT07"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-HQESZYRT07');
-</script>
-<body>
-    <header>gurjus bhasin</header>
-    <div class="container">
-        {% for path, blog in blogs.items() -%}
-
-        <div class="blog-entry">
-            <div class="blog-title"><a href="{{ path }}">{{ blog.title }}</a></div>
-            <div class="blog-meta">published on {{ blog.date }}</div>
-            <p>{{ blog.summary }}</p>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-all">
+    <header class="bg-gradient-to-r from-blue-500 to-teal-400 text-white shadow-md w-full fixed top-0 z-10 flex justify-between px-10 py-4 items-center">
+        <span class="text-3xl font-bold">gurjus bhasin</span>
+        <nav>
+            <ul class="flex space-x-6 text-lg">
+                <li><a href="#" class="hover:underline">Home</a></li>
+                <li><a href="#" class="hover:underline">Blog</a></li>
+                <li><a href="#" class="hover:underline">About</a></li>
+                <li><a href="#" class="hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container mx-auto px-6 py-32 text-center">
+        <!-- <div class="text-2xl font-bold mb-10 text-blue-600 dark:text-teal-400">Welcome to my digital space 🚀</div> -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {% for path, blog in blogs.items() -%}
+            <div class="bg-white dark:bg-gray-800 backdrop-blur-lg p-6 rounded-2xl shadow-lg transition transform hover:scale-105 hover:shadow-2xl border-l-4 border-blue-500 dark:border-teal-400">
+                <div class="text-2xl font-bold text-gray-800 dark:text-gray-100 hover:text-blue-500 dark:hover:text-teal-400 transition duration-300">
+                    <a href="{{ path }}">{{ blog.title }}</a>
+                </div>
+                <div class="text-gray-500 dark:text-gray-400 text-sm mt-1">Published on {{ blog.date }}</div>
+                <p class="text-gray-700 dark:text-gray-300 mt-3">{{ blog.summary }}</p>
+            </div>
+            {% endfor %}
         </div>
-        
-        {% endfor %}
     </div>
 </body>
-
 </html>
