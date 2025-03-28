@@ -24,10 +24,10 @@ def generate_posts() -> None:
                 content = "".join(lines[content_start:])
                 rendered = markdown.markdown(content, extensions=["fenced_code", "codehilite"])
                 rendered = "<meta name='viewport' content='width=device-width, initial-scale=1.0' /><link rel='stylesheet' type='text/css' href='/gen/style.css?r=a'><!-- Google tag (gtag.js) --><script async src='https://www.googletagmanager.com/gtag/js?id=G-HQESZYRT07'></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-HQESZYRT07');</script><a href='/'>&larr; go back to home page</a><title>" + metadata['title'] + "</title><h1>"+ metadata['title'] + "</h1><p class='date'>published on " + metadata['date'] + "</p><hr>" + rendered
-                with open(f"./gen/{entry.name.rstrip('.md')}.html", "w") as f:
+                with open(f"./gen/{entry.name[:-3]}.html", "w") as f:
                     f.write(rendered)
-                data[f"/gen/{entry.name.rstrip('.md')}.html"] = metadata
-                posts.append({"url": f"/gen/{entry.name.rstrip('.md')}.html", "metadata": metadata})
+                data[f"/gen/{entry.name[:-3]}.html"] = metadata
+                posts.append({"url": f"/gen/{entry.name[:-3]}.html", "metadata": metadata})
 
     # Render index.html
     template = env.get_template("index.jinja")

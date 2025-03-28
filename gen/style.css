@@ -458,7 +458,7 @@ hr {
 /* Dark mode using prefers-color-scheme */
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #101827;
+        background-color: #191715;
         color: #eaeaea;
     }
 
@@ -468,6 +468,10 @@ hr {
 
     .date {
         color: #9ca3af;
+    }
+
+    a {
+        color:rgb(224, 194, 117);
     }
 
     blockquote {

@@ -5,96 +5,280 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gurjus Bhasin</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'media',
-        };
-    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap');
+
+        /* Darker Gruvbox Colors */
+        :root {
+            --bg-dark: #151515;
+            --bg-light: #282828;
+            --fg: #ebdbb2;
+            --accent: rgb(235, 200, 113);;
+            --accent-hover: #fabd2f;
+            --muted: #928374;
+            --link: #83a598;
+            --link-hover: #8ec07c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #f8f9fa;
-            min-height: 100vh;
-            transition: background 0.3s ease-in-out;
+            background-color: var(--bg-dark);
+            color: var(--fg);
+            line-height: 1.6;
         }
-        .dark body {
-            background: #1e1e2e;
+
+        /* Header */
+        header {
+            background: var(--bg-light);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
-        @media (prefers-color-scheme: dark) {
-            hr {
-                border-color: #374151;
-                color: #374151;
-                background-color: #374151;
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+            flex-shrink: 0;
+        }
+
+        .menu-toggle {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: var(--fg);
+            cursor: pointer;
+            display: none;
+        }
+
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
+            overflow-x: visible;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu li {
+            display: inline;
+        }
+
+        .nav-menu a {
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 18px;
+            font-family: 'Inter', sans-serif;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.2s ease-in-out;
+            white-space: nowrap;
+        }
+
+        .nav-menu a:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            /* border: 4px solid var(--accent); */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .blog-list a {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        .blog-list a:hover {
+            color: var(--link-hover);
+        }
+
+        .project-list a {
+            color: var(--link);
+        }
+
+        .project-list a:hover {
+            color: var(--link-hover);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-light);
+                text-align: center;
+                padding: 12px 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                padding: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 12px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero p {
+                max-width: 100%;
+            }
+
+            .profile-img {
+                width: 250px;
+                height: 250px;
+                margin-top: 20px;
             }
         }
     </style>
 </head>
 
-<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-all">
-    <header class="bg-gradient-to-r from-blue-500 to-teal-400 text-white shadow-md w-full fixed top-0 z-10 px-6 md:px-10 py-4 flex justify-between items-center">
-        <span class="text-3xl font-bold">gurjus bhasin</span>
-        <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none">☰</button>
-        <nav id="menu" class="hidden md:flex md:items-center md:space-x-6 text-lg">
-            <ul class="flex flex-col md:flex-row md:space-x-6 text-lg bg-blue-500 md:bg-transparent absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto shadow-md md:shadow-none p-4 md:p-0">
-                <li><a href="#" class="block md:inline hover:underline py-2 md:py-0">Home</a></li>
-                <li><a href="#" class="block md:inline hover:underline py-2 md:py-0">Blog</a></li>
-                <li><a href="#" class="block md:inline hover:underline py-2 md:py-0">Projects</a></li>
-                <li><a href="#" class="block md:inline hover:underline py-2 md:py-0">Contact</a></li>
+<body>
+    <header>
+        <div class="brand">Gurjus Bhasin</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
     </header>
-    
-    <section class="container mx-auto px-6 py-32 flex flex-col md:flex-row items-center gap-12">
-        <!-- Left-aligned text with expanded width -->
-        <div class="flex-1 md:text-left text-center">
-            <h1 class="text-4xl font-extrabold text-gray-800 dark:text-white">Gurjus Bhasin</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mt-4">
-                Hi, I'm Gurjus. I'm a high school student, currently in my sophomore year, and I'm interested in pretty much anything involving computers and electronics; from low-level electrical engineering to systems programming and even web development. Here, you can find my ramblings, mostly on technical subjects.
-            </p>
-        </div>
-        <!-- Right-aligned image with fixed width -->
-        <div class="w-72 md:w-80 flex justify-end">
-            <img src="https://static.wixstatic.com/media/e1aff0_210084291b8a4c98bd72e4aaab52ac36~mv2.jpg/v1/fill/w_560,h_584,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/2.jpg" 
-                 alt="Gurjus Bhasin" 
-                 class="rounded-full w-60 h-60 shadow-lg">
-        </div>
-    </section>
-    
 
-    <section class="container mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-8">Latest Blog Posts</h2>
-        <div class="space-y-4 text-center">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Gurjus Bhasin</h1>
+            <p>Hi, I'm Gurjus. I'm a high school student, currently in my sophomore year, and I'm interested in pretty much anything involving computers and electronics; from low-level electrical engineering to systems programming and even web development. Here, you can find my ramblings, mostly on technical subjects.</p>
+        </div>
+        <img class="profile-img" src="https://static.wixstatic.com/media/e1aff0_210084291b8a4c98bd72e4aaab52ac36~mv2.jpg/v1/fill/w_560,h_584,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/2.jpg" alt="Gurjus Bhasin">
+    </section>
+
+    <section>
+        <h2>Latest Blog Posts</h2>
+        <div class="blog-list">
             {% for path, blog in blogs.items() -%}
-            <div class="text-2xl font-semibold text-blue-600 dark:text-teal-400">
-                <a href="{{ path }}">{{ blog.title }}</a>
-            </div>
-            <div class="text-gray-500 dark:text-gray-400 text-sm">Published on {{ blog.date }}</div>
+            <div><a href="{{ path }}">{{ blog.title }}</a></div>
+            <small>Published on {{ blog.date }}</small>
             {% endfor %}
         </div>
     </section>
-    <hr>
 
-    <section class="container mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-8">Projects</h2>
-        <ul class="list-disc list-inside text-center text-lg">
-            <li><a href="https://github.com/codic12/worm" class="text-blue-600 dark:text-teal-400 hover:underline">Worm - a X11 tiling/floating window manager for *NIX systems</a></li>
+
+    <section>
+        <h2>Projects</h2>
+        <ul class="project-list">
+            <li><a href="https://github.com/codic12/worm">Worm - a X11 tiling/floating window manager for *NIX systems</a></li>
         </ul>
     </section>
-    <hr>
 
-    <section class="container mx-auto px-6 py-16 text-center">
-        <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">get in touch</h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300">do you have questions regarding a blog, a project, or just want to talk? reach out!</p>
-        <a href="mailto:your-email@example.com" class="mt-4 inline-block text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 dark:bg-teal-500 dark:hover:bg-teal-600 px-6 py-3 rounded-lg transition">email me!</a>
-    </section>
 
     <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('menu').classList.toggle('hidden');
-        });
+        function toggleMenu() {
+            document.querySelector("nav").classList.toggle("active");
+        }
     </script>
 </body>
 </html>
