@@ -6,31 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gurjus Bhasin</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap');
 
-        /* Base Colors */
+        /* Light Mode Colors (Default) */
         :root {
-            --bg-dark: #f4f4f4;
-            --bg-light: #ffffff;
-            --fg: #333333;
-            --accent: #d79921;
-            --accent-hover: #fabd2f;
-            --muted: #7c6f64;
-            --link: #458588;
-            --link-hover: #689d6a;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7f9fc;
+            --text-primary: #1c1c1e;
+            --text-secondary: #5a6474;
+            --accent-primary: #007aff;
+            --accent-secondary: #eef5ff;
+            --border-color: #e1e4e8;
         }
 
         /* Dark Mode Colors */
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-dark: #151515;
-                --bg-light: #282828;
-                --fg: #ebdbb2;
-                --accent: rgb(235, 200, 113);
-                --accent-hover: #fabd2f;
-                --muted: #928374;
-                --link: #83a598;
-                --link-hover: #8ec07c;
+                --bg-primary: #121212;
+                --bg-secondary: #1e1e1e;
+                --text-primary: #e4e6eb;
+                --text-secondary: #b0b3b8;
+                --accent-primary: #0a84ff;
+                --accent-secondary: #2c2c2e;
+                --border-color: #3a3a3c;
             }
         }
 
@@ -38,20 +36,24 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--fg);
-            line-height: 1.6;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Header */
+        h1, h2, h3, .brand {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Header & Navigation */
         header {
-            background: var(--bg-light);
-            padding: 16px 5%;
+            background: var(--bg-primary);
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -59,190 +61,205 @@
             width: 100%;
             top: 0;
             left: 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .brand {
             font-size: 24px;
-            font-weight: bold;
-            color: var(--accent);
-            font-family: 'Fira Code', monospace;
-            flex-shrink: 0;
-        }
-
-        .menu-toggle {
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: var(--fg);
-            cursor: pointer;
-            display: none;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         nav {
-            flex-grow: 1;
             display: flex;
-            justify-content: flex-end;
-            overflow-x: visible;
         }
 
         .nav-menu {
             list-style: none;
             display: flex;
-            gap: 24px;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-menu li {
-            display: inline;
+            gap: 16px;
         }
 
         .nav-menu a {
-            color: var(--fg);
+            color: var(--text-secondary);
             text-decoration: none;
-            font-size: 18px;
-            font-family: 'Inter', sans-serif;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: background 0.2s ease-in-out;
-            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
 
         .nav-menu a:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
+            color: var(--accent-primary);
+            background-color: var(--accent-secondary);
+        }
+        
+        .menu-toggle {
+            font-size: 28px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: none;
+            z-index: 1001; /* Ensure it's above the nav */
         }
 
         /* Hero Section */
         .hero {
-            max-width: 1200px;
-            margin: 120px auto 40px;
-            padding: 20px;
+            max-width: 960px;
+            margin: 140px auto 60px;
+            padding: 0 20px;
             display: flex;
             align-items: center;
-            gap: 40px;
-        }
-
-        .hero-content {
-            flex: 1;
+            justify-content: center;
+            gap: 60px;
             text-align: left;
         }
 
+        .hero-content {
+            flex-basis: 60%;
+        }
+
         .hero h1 {
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 700;
-            color: var(--accent);
-            font-family: 'Fira Code', monospace;
-            margin-bottom: 20px;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 .highlight {
+             background: linear-gradient(120deg, #007aff, #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: underline;
         }
 
         .hero p {
             font-size: 18px;
-            color: var(--muted);
-            margin-bottom: 20px;
+            color: var(--text-secondary);
+            max-width: 500px;
         }
 
         .profile-img {
-            width: 250px;
-            height: 250px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
             flex-shrink: 0;
         }
 
-        /* Sections */
+        /* Content Sections */
         section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 20px;
-            text-align: center;
+            max-width: 960px;
+            margin: 80px auto;
+            padding: 0 20px;
         }
 
         h2 {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: var(--accent);
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            text-align: center;
+            color: var(--text-primary);
         }
 
-        .blog-list a {
+        .blog-list, .project-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            text-align: center;
+        }
+
+        .blog-list-item, .project-list-item {
+             background-color: var(--bg-secondary);
+             padding: 24px;
+             border-radius: 12px;
+             border: 1px solid var(--border-color);
+             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .blog-list-item:hover, .project-list-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-list-item a, .project-list-item a {
             font-size: 20px;
             font-weight: 600;
-            color: var(--link);
+            color: var(--accent-primary);
             text-decoration: none;
         }
 
-        .blog-list a:hover {
-            color: var(--link-hover);
-        }
-
-        .project-list a {
-            color: var(--link);
-        }
-
-        .project-list a:hover {
-            color: var(--link-hover);
+        .blog-list-item small {
+            display: block;
+            margin-top: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                margin-top: 120px;
+                gap: 40px;
+            }
+
+            .hero-content {
+                flex-basis: auto;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+
             .menu-toggle {
                 display: block;
             }
 
             nav {
-                display: none;
-                flex-direction: column;
+                display: none; /* Hide by default */
                 position: absolute;
-                top: 64px;
+                top: 0;
                 left: 0;
-                width: 100%;
-                background: var(--bg-light);
-                text-align: center;
-                padding: 12px 0;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100vw;
+                height: 100vh;
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
 
             nav.active {
-                display: flex;
+                display: flex; /* Show when active */
             }
 
             .nav-menu {
                 flex-direction: column;
-                gap: 12px;
-                width: 100%;
-                padding: 0;
-            }
-
-            .nav-menu li {
-                width: 100%;
+                gap: 20px;
+                text-align: center;
             }
 
             .nav-menu a {
-                display: block;
-                padding: 12px;
-            }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-content {
-                text-align: center;
-            }
-
-            .hero p {
-                max-width: 100%;
-            }
-
-            .profile-img {
-                width: 250px;
-                height: 250px;
-                margin-top: 20px;
+                font-size: 24px;
             }
         }
     </style>
@@ -262,34 +279,41 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Gurjus Bhasin</h1>
-            <p>Hi, I'm Gurjus. I'm a high school student, currently in my sophomore year, and I'm interested in pretty much anything involving computers and electronics; from low-level electrical engineering to systems programming and even web development. Here, you can find my ramblings, mostly on technical subjects.</p>
-        </div>
-        <img class="profile-img" src="https://static.wixstatic.com/media/e1aff0_210084291b8a4c98bd72e4aaab52ac36~mv2.jpg/v1/fill/w_560,h_584,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/2.jpg" alt="Gurjus Bhasin">
-    </section>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">Gurjus Bhasin</span></h1>
+                <p>I'm a high school junior driven by a fascination with how technology shapes our world. My journey spans the full stack; from the fundamentals of electrical engineering to the complexities of systems programming and modern AI developments. I believe the most exciting innovations happen when deep technical knowledge meets strategic business thinking, to make life better for everyone. This is where I share my projects and explorations at that crossroads.</p>
+            </div>
+            <img class="profile-img" src="/assets/IMG_5428.jpg" alt="A portrait of Gurjus Bhasin">
+        </section>
 
-    <section>
-        <h2>Latest Blog Posts</h2>
-        <div class="blog-list">
-            {% for path, blog in blogs.items() -%}
-            <div><a href="{{ path }}">{{ blog.title }}</a></div>
-            <small>Published on {{ blog.date }}</small>
-            {% endfor %}
-        </div>
-    </section>
+        <section>
+            <h2>Latest From The Blog</h2>
+            <div class="blog-list">
+                {% for path, blog in blogs.items() %}
+                <div class="blog-list-item">
+                    <a href="{{ path }}">{{ blog.title }}</a>
+                    <small>Published on {{ blog.date }}</small>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
 
-    <section>
-        <h2>Projects</h2>
-        <ul class="project-list">
-            <li><a href="https://github.com/codic12/worm">Worm - a X11 tiling/floating window manager for *NIX systems</a></li>
-        </ul>
-    </section>
+
+    </main>
 
     <script>
         function toggleMenu() {
-            document.querySelector("nav").classList.toggle("active");
+            const nav = document.querySelector("nav");
+            const menuToggle = document.querySelector(".menu-toggle");
+            nav.classList.toggle("active");
+            // Change button to 'X' when menu is open
+            if (nav.classList.contains("active")) {
+                menuToggle.innerHTML = "&times;";
+            } else {
+                menuToggle.innerHTML = "☰";
+            }
         }
     </script>
 </body>
