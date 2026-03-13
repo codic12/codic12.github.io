@@ -6,54 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gurjus Bhasin</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
 
-        /* Light Mode Colors (Default) */
         :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f7f9fc;
-            --text-primary: #1c1c1e;
-            --text-secondary: #5a6474;
-            --accent-primary: #007aff;
-            --accent-secondary: #eef5ff;
-            --border-color: #e1e4e8;
+            --bg-primary: #f0f0f0;
+            --bg-secondary: #e8e8e8;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6e6e6e;
+            --accent: #0077cc;
+            --border-top: rgba(255,255,255,0.85);
+            --border-bottom: rgba(0,0,0,0.13);
+            --card-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 2px 8px rgba(0,0,0,0.1);
+            --header-bg-start: #f6f6f6;
+            --header-bg-end: #dedede;
+            --header-border: #b4b4b4;
+            --nav-text: #333;
+            --nav-hover-bg: rgba(0,0,0,0.07);
+            --divider: rgba(0,0,0,0.08);
+            --dot-color: rgba(0,0,0,0.055);
         }
 
-        /* Dark Mode Colors */
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-primary: #121212;
-                --bg-secondary: #1e1e1e;
-                --text-primary: #e4e6eb;
-                --text-secondary: #b0b3b8;
-                --accent-primary: #0a84ff;
-                --accent-secondary: #2c2c2e;
-                --border-color: #3a3a3c;
+                --bg-primary: #1c1c1e;
+                --bg-secondary: #2c2c2e;
+                --bg-card: #2a2a2c;
+                --text-primary: #f0f0f0;
+                --text-secondary: #98989e;
+                --accent: #4da3f0;
+                --border-top: rgba(255,255,255,0.07);
+                --border-bottom: rgba(0,0,0,0.5);
+                --card-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 2px 10px rgba(0,0,0,0.4);
+                --header-bg-start: #3a3a3c;
+                --header-bg-end: #252527;
+                --header-border: #111;
+                --nav-text: #d0d0d0;
+                --nav-hover-bg: rgba(255,255,255,0.07);
+                --divider: rgba(255,255,255,0.06);
+                --dot-color: rgba(255,255,255,0.03);
             }
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: var(--bg-primary);
+            background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+            background-size: 22px 22px;
             color: var(--text-primary);
             line-height: 1.7;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        h1, h2, h3, .brand {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Header & Navigation */
+        /* Header — simple gradient bar */
         header {
-            background: var(--bg-primary);
-            padding: 20px 5%;
+            background: linear-gradient(180deg, var(--header-bg-start) 0%, var(--header-bg-end) 100%);
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -61,206 +71,227 @@
             width: 100%;
             top: 0;
             left: 0;
-            border-bottom: 1px solid var(--border-color);
+            height: 52px;
             z-index: 1000;
-            transition: background-color 0.3s, border-color 0.3s;
+            border-bottom: 1px solid var(--header-border);
+            box-shadow: inset 0 1px 0 var(--border-top), 0 2px 5px rgba(0,0,0,0.18);
         }
 
         .brand {
-            font-size: 24px;
+            font-size: 19px;
             font-weight: 700;
             color: var(--text-primary);
+            letter-spacing: -0.3px;
+            text-shadow: 0 1px 0 var(--border-top);
         }
 
-        nav {
-            display: flex;
-        }
+        nav { display: flex; }
 
-        .nav-menu {
-            list-style: none;
-            display: flex;
-            gap: 16px;
-        }
+        .nav-menu { list-style: none; display: flex; gap: 2px; }
 
         .nav-menu a {
-            color: var(--text-secondary);
+            display: inline-block;
+            color: var(--nav-text);
             text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+            font-size: 15px;
+            font-weight: 400;
+            padding: 6px 14px;
+            border-radius: 5px;
+            transition: background-color 0.15s;
         }
 
         .nav-menu a:hover {
-            color: var(--accent-primary);
-            background-color: var(--accent-secondary);
+            background-color: var(--nav-hover-bg);
+            color: var(--text-primary);
         }
-        
+
         .menu-toggle {
-            font-size: 28px;
+            font-size: 22px;
             background: none;
             border: none;
             color: var(--text-primary);
             cursor: pointer;
             display: none;
-            z-index: 1001; /* Ensure it's above the nav */
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            max-width: 960px;
-            margin: 140px auto 60px;
-            padding: 0 20px;
+            max-width: 900px;
+            margin: 96px auto 56px;
+            padding: 0 24px;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 60px;
-            text-align: left;
         }
 
-        .hero-content {
-            flex-basis: 60%;
-        }
+        .hero-content { flex: 1; }
 
         .hero h1 {
-            font-size: 48px;
-            font-weight: 700;
+            font-size: 46px;
+            font-weight: 300;
             color: var(--text-primary);
             margin-bottom: 16px;
             line-height: 1.2;
+            letter-spacing: -1px;
+            text-shadow: 0 1px 0 var(--border-top);
         }
-        
+
         .hero h1 .highlight {
-             background: linear-gradient(120deg, #007aff, #5856d6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: underline;
+            font-weight: 700;
+            color: var(--accent);
         }
 
         .hero p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 500px;
+            font-size: 19px;
+            color: rgb(196, 196, 196);
+            max-width: 480px;
+            font-weight: 300;
+            line-height: 1.8;
         }
 
         .profile-img {
-            width: 220px;
-            height: 220px;
+            width: 190px;
+            height: 190px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--border-color);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
             flex-shrink: 0;
+            border: 1px solid rgba(0,0,0,0.12);
+            box-shadow:
+                0 0 0 4px var(--bg-card),
+                0 0 0 5px rgba(0,0,0,0.1),
+                0 1px 0 7px rgba(255,255,255,0.6),
+                0 10px 28px rgba(0,0,0,0.25);
         }
 
-        /* Content Sections */
+        /* Sections */
         section {
-            max-width: 960px;
-            margin: 80px auto;
-            padding: 0 20px;
+            max-width: 900px;
+            margin: 0 auto 56px;
+            padding: 0 24px;
         }
 
         h2 {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 32px;
-            text-align: center;
+            font-size: 23px;
+            font-weight: 300;
+            margin-bottom: 14px;
             color: var(--text-primary);
+            letter-spacing: -0.4px;
+            text-shadow: 0 1px 0 var(--border-top);
         }
 
+        /* iOS-style grouped table list — glossy */
         .blog-list, .project-list {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            text-align: center;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-bottom);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.75),
+                0 4px 16px rgba(0,0,0,0.12),
+                0 1px 3px rgba(0,0,0,0.08);
         }
 
         .blog-list-item, .project-list-item {
-             background-color: var(--bg-secondary);
-             padding: 24px;
-             border-radius: 12px;
-             border: 1px solid var(--border-color);
-             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            background: linear-gradient(180deg,
+                rgba(255,255,255,0.95) 0%,
+                rgba(245,245,247,0.95) 100%);
+            padding: 15px 40px 15px 18px;
+            border-bottom: 1px solid var(--divider);
+            position: relative;
+            transition: background 0.12s;
         }
-        
+
+        @media (prefers-color-scheme: dark) {
+            .blog-list, .project-list {
+                box-shadow:
+                    inset 0 1px 0 rgba(255,255,255,0.07),
+                    0 4px 16px rgba(0,0,0,0.45),
+                    0 1px 3px rgba(0,0,0,0.3);
+            }
+            .blog-list-item, .project-list-item {
+                background: linear-gradient(180deg,
+                    rgba(50,50,53,0.98) 0%,
+                    rgba(38,38,41,0.98) 100%);
+            }
+            .blog-list-item:hover, .project-list-item:hover {
+                background: linear-gradient(180deg,
+                    rgba(62,62,66,1) 0%,
+                    rgba(50,50,54,1) 100%) !important;
+            }
+        }
+
+        .blog-list-item:last-child,
+        .project-list-item:last-child {
+            border-bottom: none;
+        }
+
         .blog-list-item:hover, .project-list-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(180deg,
+                rgba(235,240,255,0.98) 0%,
+                rgba(225,232,250,0.98) 100%);
         }
 
         .blog-list-item a, .project-list-item a {
-            font-size: 20px;
+            font-size: 17px;
             font-weight: 600;
-            color: var(--accent-primary);
+            color: var(--accent);
             text-decoration: none;
+            display: block;
         }
+
+        .blog-list-item a:hover { text-decoration: underline; }
 
         .blog-list-item small {
             display: block;
-            margin-top: 8px;
+            margin-top: 3px;
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 300;
         }
 
-        /* Responsive Design */
+        /* Chevron */
+        .blog-list-item::after, .project-list-item::after {
+            content: '›';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.45;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column-reverse;
                 text-align: center;
-                margin-top: 120px;
-                gap: 40px;
+                margin-top: 76px;
+                gap: 28px;
             }
 
-            .hero-content {
-                flex-basis: auto;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
+            .hero p { margin: 0 auto; }
+            .hero h1 { font-size: 30px; }
 
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .profile-img {
-                width: 180px;
-                height: 180px;
-            }
+            .profile-img { width: 130px; height: 130px; }
 
-            .menu-toggle {
-                display: block;
-            }
+            .menu-toggle { display: block; }
 
             nav {
-                display: none; /* Hide by default */
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background-color: var(--bg-primary);
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: linear-gradient(180deg, var(--header-bg-start), var(--header-bg-end));
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
 
-            nav.active {
-                display: flex; /* Show when active */
-            }
+            nav.active { display: flex; }
 
-            .nav-menu {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-
-            .nav-menu a {
-                font-size: 24px;
-            }
+            .nav-menu { flex-direction: column; gap: 8px; text-align: center; }
+            .nav-menu a { font-size: 20px; padding: 12px 32px; }
         }
     </style>
 </head>
@@ -282,7 +313,7 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>Hi, I'm <span class="highlight">Gurjus Bhasin</span></h1>
+                <h1>hi, i'm <span class="highlight">gurjus bhasin.</span></h1>
                 <p>I'm a high school junior driven by a fascination with how technology shapes our world. My journey spans the full stack; from the fundamentals of electrical engineering to the complexities of systems programming and modern AI developments. I believe the most exciting innovations happen when deep technical knowledge meets strategic business thinking, to make life better for everyone. This is where I share my projects and explorations at that crossroads.</p>
             </div>
             <img class="profile-img" src="/profile.jpg" alt="A portrait of Gurjus Bhasin">
@@ -290,12 +321,10 @@
 
         <section>
             <h2>Latest From The Blog</h2>
-            <div class="blog-list">
+        <div class="blog-list">
                 
             </div>
         </section>
-
-
     </main>
 
     <script>
@@ -303,7 +332,6 @@
             const nav = document.querySelector("nav");
             const menuToggle = document.querySelector(".menu-toggle");
             nav.classList.toggle("active");
-            // Change button to 'X' when menu is open
             if (nav.classList.contains("active")) {
                 menuToggle.innerHTML = "&times;";
             } else {
